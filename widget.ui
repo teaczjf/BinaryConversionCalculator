@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>467</width>
+    <width>825</width>
     <height>418</height>
    </rect>
   </property>
@@ -45,7 +45,11 @@
     </widget>
    </item>
    <item row="5" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX16"/>
+    <widget class="QLineEdit" name="lineEdit_HEX16">
+     <property name="maxLength">
+      <number>4</number>
+     </property>
+    </widget>
    </item>
    <item row="0" column="3">
     <widget class="QPushButton" name="pushButton_DEC">
@@ -55,7 +59,11 @@
     </widget>
    </item>
    <item row="7" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX64"/>
+    <widget class="QLineEdit" name="lineEdit_HEX64">
+     <property name="maxLength">
+      <number>16</number>
+     </property>
+    </widget>
    </item>
    <item row="10" column="0">
     <widget class="QLabel" name="label_15">
@@ -96,10 +104,14 @@
     </widget>
    </item>
    <item row="6" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX16_2"/>
+    <widget class="QLineEdit" name="lineEdit_HEX32">
+     <property name="maxLength">
+      <number>8</number>
+     </property>
+    </widget>
    </item>
    <item row="6" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_HEX16_2">
+    <widget class="QPushButton" name="pushButton_HEX32">
      <property name="text">
       <string>计算</string>
      </property>
@@ -161,7 +173,11 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX4"/>
+    <widget class="QLineEdit" name="lineEdit_HEX4">
+     <property name="maxLength">
+      <number>1</number>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_19">
@@ -178,7 +194,11 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX8"/>
+    <widget class="QLineEdit" name="lineEdit_HEX8">
+     <property name="maxLength">
+      <number>2</number>
+     </property>
+    </widget>
    </item>
    <item row="2" column="3">
     <widget class="QPushButton" name="pushButton_HEX8">
