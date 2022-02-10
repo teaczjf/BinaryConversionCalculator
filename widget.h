@@ -36,6 +36,9 @@ public slots:
     void slot_Convert_INT_HEX4(int64_t num);//HEX4 有符号
     void slot_Convert_UINT_HEX4(uint64_t num);//HEX4 无符号
 
+//    void slot_Convert_INT_HEX8(int64_t num);//HEX8 有符号
+//    void slot_Convert_UINT_HEX8(uint64_t num);//HEX8 无符号
+
 };
 
 #endif // WIDGET_H

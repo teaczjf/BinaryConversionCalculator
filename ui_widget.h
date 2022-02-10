@@ -196,7 +196,7 @@ public:
 
         lineEdit_HEX4 = new QLineEdit(Widget);
         lineEdit_HEX4->setObjectName(QStringLiteral("lineEdit_HEX4"));
-        lineEdit_HEX4->setMaxLength(16);
+        lineEdit_HEX4->setMaxLength(1);
 
         gridLayout->addWidget(lineEdit_HEX4, 1, 1, 1, 1);
 

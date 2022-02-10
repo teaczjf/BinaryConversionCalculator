@@ -22,8 +22,13 @@ double num_double=0;
 union {float f; int i;}cvt_float;
 
 bool flag=0;//计算类型0：有符号 0 无符号
+union data{
+    uint64_t num_u64b;
+    int64_t num_i64b;
+    double num_d64b;
+};
 
-
+union data num_data;
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -37,6 +42,8 @@ Widget::Widget(QWidget *parent) :
     connect(this,&Widget::sig_Convert_UINT_DEC,this,&Widget::slot_Convert_UINT_DEC);//无符号整数处理信号绑定
     connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
     connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
+//    connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
+//    connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
     ui->radbtn_int->setChecked(true);
     flag=0;
     //两个radiobtn的配置
@@ -70,21 +77,99 @@ Widget::Widget(QWidget *parent) :
         }
     });
 
-    //HEX4
+    //HEX4b
     QRegExp regx1("[A-Fa-f0-9]+$");//
     QValidator *validator1 = new QRegExpValidator(regx1, ui->lineEdit_HEX4 );
     ui->lineEdit_HEX4->setValidator(validator1);
     connect(ui->pushButton_HEX4,&QPushButton::clicked,[=](){
         QString str1 = ui->lineEdit_HEX4->text();
-        num_int64=str1.toInt(0,16);
         if(flag == 0)//有符号
         {
-            num_int64=str1.toInt(0,16);
-            emit this->sig_Convert_INT_HEX4(num_int64);
+            num_data.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
         }
         else
         {
-            num_uint64=str1.toUInt(0,16);
+            num_uint64=str1.toULongLong(0,16);
+            emit this->sig_Convert_UINT_HEX4(num_uint64);
+        }
+    });
+
+
+
+    //HEX8b
+    QRegExp regx2("[A-Fa-f0-9]+$");//
+    QValidator *validator2 = new QRegExpValidator(regx2, ui->lineEdit_HEX8 );
+    ui->lineEdit_HEX8->setValidator(validator2);
+
+    connect(ui->pushButton_HEX8,&QPushButton::clicked,[=](){
+        QString str1 = ui->lineEdit_HEX8->text();
+        if(flag == 0)//有符号
+        {
+            num_data.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+        }
+        else
+        {
+            num_uint64=str1.toULongLong(0,16);
+            emit this->sig_Convert_UINT_HEX4(num_uint64);
+        }
+    });
+
+    //HEX16b
+    QRegExp regx3("[A-Fa-f0-9]+$");//
+    QValidator *validator3 = new QRegExpValidator(regx3, ui->lineEdit_HEX16 );
+    ui->lineEdit_HEX16->setValidator(validator3);
+
+    connect(ui->pushButton_HEX16,&QPushButton::clicked,[=](){
+        QString str1 = ui->lineEdit_HEX16->text();
+        if(flag == 0)//有符号
+        {
+            num_data.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+        }
+        else
+        {
+            num_uint64=str1.toULongLong(0,16);
+            emit this->sig_Convert_UINT_HEX4(num_uint64);
+        }
+    });
+
+    //HEX32b
+    QRegExp regx4("[A-Fa-f0-9]+$");//
+    QValidator *validator4 = new QRegExpValidator(regx4, ui->lineEdit_HEX32 );
+    ui->lineEdit_HEX32->setValidator(validator4);
+
+    connect(ui->pushButton_HEX32,&QPushButton::clicked,[=](){
+        QString str1 = ui->lineEdit_HEX32->text();
+        if(flag == 0)//有符号
+        {
+            num_data.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+        }
+        else
+        {
+            num_uint64=str1.toULongLong(0,16);
+            emit this->sig_Convert_UINT_HEX4(num_uint64);
+        }
+    });
+
+    //HEX64b
+    QRegExp regx5("[A-Fa-f0-9]+$");//
+    QValidator *validator5 = new QRegExpValidator(regx5, ui->lineEdit_HEX64 );
+    ui->lineEdit_HEX64->setValidator(validator5);
+
+    connect(ui->pushButton_HEX64,&QPushButton::clicked,[=](){
+        QString str1 = ui->lineEdit_HEX64->text();
+        if(flag == 0)//有符号
+        {
+            num_data.num_u64b=str1.toULongLong(0,16);
+ //            num_int64=str1.toInt(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+        }
+        else
+        {
+            num_uint64=str1.toULongLong(0,16);
             emit this->sig_Convert_UINT_HEX4(num_uint64);
         }
     });
@@ -183,6 +268,7 @@ void Widget::slot_Convert_UINT_DEC(uint64_t num)
 void Widget::slot_Convert_INT_HEX4(int64_t num)
 {
     qDebug()<<"开始有符号HEX4数的转换 = "<<num;
+
     if(num < 0)
     {
         QString str1=(QString("%1").arg(num,16,16,QLatin1Char('0')));
@@ -205,16 +291,17 @@ void Widget::slot_Convert_INT_HEX4(int64_t num)
         ui->lineEdit_HEX4->setText(str1.mid(15,1));
         ui->lineEdit_BIN->setText(QString::number(num,2));
     }
+    num_data.num_i64b=num;
 
-    num_float =float(num);
+    num_float =float(num_data.num_d64b);
     qDebug()<<num_float;
     //    cvt_float.f=num_float;
-    ui->lineEdit_FLOAT->setText(QString::number(num_float,'f'));
+    ui->lineEdit_FLOAT->setText(QString::number(num_float,'g'));
     //    ui->lineEdit_HEX32->setText(QString::number(cvt_float.i,16));
 
-    num_double =double(num);
-    qDebug()<<num_double;
-    ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16));
+//    num_double =double(num);
+    qDebug()<<num_data.num_d64b;
+    ui->lineEdit_DOUBLE->setText(QString::number(num_data.num_d64b,'g',16));
 }
 
 
@@ -244,3 +331,6 @@ void Widget::slot_Convert_UINT_HEX4(uint64_t num)
     num_double =double(num);
     ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16));
 }
+
+
+
