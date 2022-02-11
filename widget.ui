@@ -51,13 +51,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="3">
-    <widget class="QPushButton" name="pushButton_DEC">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
    <item row="7" column="1">
     <widget class="QLineEdit" name="lineEdit_HEX64">
      <property name="maxLength">
@@ -165,13 +158,6 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
-    <widget class="QPushButton" name="pushButton_HEX4">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="1">
     <widget class="QLineEdit" name="lineEdit_HEX4">
      <property name="maxLength">
@@ -200,8 +186,22 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="2" colspan="2">
     <widget class="QPushButton" name="pushButton_HEX8">
+     <property name="text">
+      <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2" colspan="2">
+    <widget class="QPushButton" name="pushButton_HEX4">
+     <property name="text">
+      <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" colspan="2">
+    <widget class="QPushButton" name="pushButton_DEC">
      <property name="text">
       <string>计算</string>
      </property>

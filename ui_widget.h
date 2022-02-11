@@ -32,7 +32,6 @@ public:
     QLabel *label_11;
     QLabel *label_16;
     QLineEdit *lineEdit_HEX16;
-    QPushButton *pushButton_DEC;
     QLineEdit *lineEdit_HEX64;
     QLabel *label_15;
     QRadioButton *radbtn_int;
@@ -50,12 +49,13 @@ public:
     QPushButton *pushButton_BIN;
     QPushButton *pushButton_DOUBLE;
     QLabel *label_12;
-    QPushButton *pushButton_HEX4;
     QLineEdit *lineEdit_HEX4;
     QLabel *label_19;
     QLabel *label_18;
     QLineEdit *lineEdit_HEX8;
     QPushButton *pushButton_HEX8;
+    QPushButton *pushButton_HEX4;
+    QPushButton *pushButton_DEC;
 
     void setupUi(QWidget *Widget)
     {
@@ -96,11 +96,6 @@ public:
         lineEdit_HEX16->setMaxLength(4);
 
         gridLayout->addWidget(lineEdit_HEX16, 5, 1, 1, 1);
-
-        pushButton_DEC = new QPushButton(Widget);
-        pushButton_DEC->setObjectName(QStringLiteral("pushButton_DEC"));
-
-        gridLayout->addWidget(pushButton_DEC, 0, 3, 1, 1);
 
         lineEdit_HEX64 = new QLineEdit(Widget);
         lineEdit_HEX64->setObjectName(QStringLiteral("lineEdit_HEX64"));
@@ -189,11 +184,6 @@ public:
 
         gridLayout->addWidget(label_12, 7, 0, 1, 1);
 
-        pushButton_HEX4 = new QPushButton(Widget);
-        pushButton_HEX4->setObjectName(QStringLiteral("pushButton_HEX4"));
-
-        gridLayout->addWidget(pushButton_HEX4, 1, 3, 1, 1);
-
         lineEdit_HEX4 = new QLineEdit(Widget);
         lineEdit_HEX4->setObjectName(QStringLiteral("lineEdit_HEX4"));
         lineEdit_HEX4->setMaxLength(1);
@@ -219,7 +209,17 @@ public:
         pushButton_HEX8 = new QPushButton(Widget);
         pushButton_HEX8->setObjectName(QStringLiteral("pushButton_HEX8"));
 
-        gridLayout->addWidget(pushButton_HEX8, 2, 3, 1, 1);
+        gridLayout->addWidget(pushButton_HEX8, 2, 2, 1, 2);
+
+        pushButton_HEX4 = new QPushButton(Widget);
+        pushButton_HEX4->setObjectName(QStringLiteral("pushButton_HEX4"));
+
+        gridLayout->addWidget(pushButton_HEX4, 1, 2, 1, 2);
+
+        pushButton_DEC = new QPushButton(Widget);
+        pushButton_DEC->setObjectName(QStringLiteral("pushButton_DEC"));
+
+        gridLayout->addWidget(pushButton_DEC, 0, 2, 1, 2);
 
 
         retranslateUi(Widget);
@@ -233,7 +233,6 @@ public:
         pushButton_HEX16->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
         label_11->setText(QApplication::translate("Widget", "DEC:", Q_NULLPTR));
         label_16->setText(QApplication::translate("Widget", "HEX(16b):", Q_NULLPTR));
-        pushButton_DEC->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
         label_15->setText(QApplication::translate("Widget", "BIN:", Q_NULLPTR));
         radbtn_int->setText(QApplication::translate("Widget", "\346\234\211\347\254\246\345\217\267", Q_NULLPTR));
         label_13->setText(QApplication::translate("Widget", "FLOAT:", Q_NULLPTR));
@@ -246,10 +245,11 @@ public:
         pushButton_BIN->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
         pushButton_DOUBLE->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
         label_12->setText(QApplication::translate("Widget", "HEX(64b):", Q_NULLPTR));
-        pushButton_HEX4->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
         label_19->setText(QApplication::translate("Widget", "HEX(4b):", Q_NULLPTR));
         label_18->setText(QApplication::translate("Widget", "HEX(8b):", Q_NULLPTR));
         pushButton_HEX8->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
+        pushButton_HEX4->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
+        pushButton_DEC->setText(QApplication::translate("Widget", "\350\256\241\347\256\227", Q_NULLPTR));
     } // retranslateUi
 
 };

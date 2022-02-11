@@ -22,13 +22,22 @@ double num_double=0;
 union {float f; int i;}cvt_float;
 
 bool flag=0;//计算类型0：有符号 0 无符号
-union data{
+union data_64b{
     uint64_t num_u64b;
     int64_t num_i64b;
     double num_d64b;
 };
 
-union data num_data;
+union data_32b{
+    uint32_t num_u32b;
+    int32_t num_i32b;
+    float num_f32b;
+};
+
+
+union data_64b num_data_64b;
+union data_32b num_data_32b;
+
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -42,7 +51,10 @@ Widget::Widget(QWidget *parent) :
     connect(this,&Widget::sig_Convert_UINT_DEC,this,&Widget::slot_Convert_UINT_DEC);//无符号整数处理信号绑定
     connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
     connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
-//    connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
+    connect(this,&Widget::sig_Convert_float,this,&Widget::slot_Convert_float);//浮点数处理信号绑定
+
+
+    //    connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
 //    connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
     ui->radbtn_int->setChecked(true);
     flag=0;
@@ -85,8 +97,8 @@ Widget::Widget(QWidget *parent) :
         QString str1 = ui->lineEdit_HEX4->text();
         if(flag == 0)//有符号
         {
-            num_data.num_u64b=str1.toULongLong(0,16);
-            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+            num_data_64b.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data_64b.num_i64b);
         }
         else
         {
@@ -106,8 +118,8 @@ Widget::Widget(QWidget *parent) :
         QString str1 = ui->lineEdit_HEX8->text();
         if(flag == 0)//有符号
         {
-            num_data.num_u64b=str1.toULongLong(0,16);
-            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+            num_data_64b.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data_64b.num_i64b);
         }
         else
         {
@@ -125,8 +137,8 @@ Widget::Widget(QWidget *parent) :
         QString str1 = ui->lineEdit_HEX16->text();
         if(flag == 0)//有符号
         {
-            num_data.num_u64b=str1.toULongLong(0,16);
-            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+            num_data_64b.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data_64b.num_i64b);
         }
         else
         {
@@ -144,8 +156,8 @@ Widget::Widget(QWidget *parent) :
         QString str1 = ui->lineEdit_HEX32->text();
         if(flag == 0)//有符号
         {
-            num_data.num_u64b=str1.toULongLong(0,16);
-            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+            num_data_64b.num_u64b=str1.toULongLong(0,16);
+            emit this->sig_Convert_INT_HEX4(num_data_64b.num_i64b);
         }
         else
         {
@@ -163,15 +175,33 @@ Widget::Widget(QWidget *parent) :
         QString str1 = ui->lineEdit_HEX64->text();
         if(flag == 0)//有符号
         {
-            num_data.num_u64b=str1.toULongLong(0,16);
+            num_data_64b.num_u64b=str1.toULongLong(0,16);
  //            num_int64=str1.toInt(0,16);
-            emit this->sig_Convert_INT_HEX4(num_data.num_i64b);
+            emit this->sig_Convert_INT_HEX4(num_data_64b.num_i64b);
         }
         else
         {
             num_uint64=str1.toULongLong(0,16);
             emit this->sig_Convert_UINT_HEX4(num_uint64);
         }
+    });
+
+    //float
+    QRegExp regx6("^(-?\\d+)(\\.\\d+)?$");//    浮点数
+    QValidator *validator6 = new QRegExpValidator(regx6, ui->lineEdit_FLOAT );
+    ui->lineEdit_FLOAT->setValidator(validator6);
+    connect(ui->pushButton_FLOAT,&QPushButton::clicked,[=](){
+        QString str1 = ui->lineEdit_FLOAT->text();
+//        if(flag == 0)//有符号
+//        {
+            num_data_32b.num_f32b=str1.toFloat();
+            emit this->slot_Convert_float(num_data_32b.num_f32b);
+//        }
+//        else
+//        {
+//            num_uint64=str1.toULongLong(0,16);
+//            emit this->sig_Convert_UINT_HEX4(num_uint64);
+//        }
     });
 
 }
@@ -262,12 +292,12 @@ void Widget::slot_Convert_UINT_DEC(uint64_t num)
 
 /**
  * @brief Widget::slot_Convert_INT_HEX4
- * 处理有符号HEX4数的转换
+ * 处理有符号HEX数的转换
  * @param num
  */
 void Widget::slot_Convert_INT_HEX4(int64_t num)
 {
-    qDebug()<<"开始有符号HEX4数的转换 = "<<num;
+    qDebug()<<"开始有符号HEX数的转换 = "<<num;
 
     if(num < 0)
     {
@@ -291,17 +321,13 @@ void Widget::slot_Convert_INT_HEX4(int64_t num)
         ui->lineEdit_HEX4->setText(str1.mid(15,1));
         ui->lineEdit_BIN->setText(QString::number(num,2));
     }
-    num_data.num_i64b=num;
+    num_data_64b.num_i64b=num;
 
-    num_float =float(num_data.num_d64b);
-    qDebug()<<num_float;
-    //    cvt_float.f=num_float;
-    ui->lineEdit_FLOAT->setText(QString::number(num_float,'g'));
-    //    ui->lineEdit_HEX32->setText(QString::number(cvt_float.i,16));
+    num_data_32b.num_u32b =num_data_64b.num_u64b&0x0000000ffffffff;
+    ui->lineEdit_FLOAT->setText(QString("%1").arg(num_data_32b.num_f32b));
 
-//    num_double =double(num);
-    qDebug()<<num_data.num_d64b;
-    ui->lineEdit_DOUBLE->setText(QString::number(num_data.num_d64b,'g',16));
+
+    ui->lineEdit_DOUBLE->setText(QString::number(num_data_64b.num_d64b,'g',16));
 }
 
 
@@ -309,12 +335,12 @@ void Widget::slot_Convert_INT_HEX4(int64_t num)
 
 /**
  * @brief Widget::slot_Convert_UINT_HEX4
- * 处理无符号HEX4数的转换
+ * 处理无符号HEX数的转换
  * @param num
  */
 void Widget::slot_Convert_UINT_HEX4(uint64_t num)
 {
-    qDebug()<<"开始无符号HEX4数的转换 = "<<num;
+    qDebug()<<"开始无符号HEX数的转换 = "<<num;
 
     QString str1=(QString("%1").arg(num,16,16,QLatin1Char('0')));
     ui->lineEdit_DEC->setText(QString::number(num,10));
@@ -324,12 +350,36 @@ void Widget::slot_Convert_UINT_HEX4(uint64_t num)
     ui->lineEdit_HEX8->setText(str1.mid(14,2));
     ui->lineEdit_HEX4->setText(str1.mid(15,1));
     ui->lineEdit_BIN->setText(QString::number(num,2));
+    num_data_64b.num_u64b=num;
+    ui->lineEdit_FLOAT->setText(QString::number(num_data_64b.num_d64b,'g',6));
+    ui->lineEdit_DOUBLE->setText(QString::number(num_data_64b.num_d64b,'g',16));
+}
 
-    num_float =float(num);
-    ui->lineEdit_FLOAT->setText(QString::number(num_float,'f'));
 
-    num_double =double(num);
+/**
+ * @brief Widget::slot_Convert_float
+ * 处理浮点数的转换
+ * @param num
+ */
+void Widget::slot_Convert_float(float num)
+{
+    num_data_32b.num_f32b=num;
+    int k1=num_data_32b.num_f32b;
+    QString str1=(QString("%1").arg(num_data_32b.num_u32b,16,16,QLatin1Char('0')));
+    ui->lineEdit_DEC->setText(QString::number(k1,10));
+    ui->lineEdit_HEX64->setText(str1);
+    ui->lineEdit_HEX32->setText(str1.mid(8,8));
+    ui->lineEdit_HEX16->setText(str1.mid(12,4));
+    ui->lineEdit_HEX8->setText(str1.mid(14,2));
+    ui->lineEdit_HEX4->setText(str1.mid(15,1));
+    ui->lineEdit_BIN->setText(QString::number(num_data_32b.num_u32b,2));
+
+    ui->lineEdit_FLOAT->setText(QString("%1").arg(num_data_32b.num_f32b));
+
+    num_double =num_data_32b.num_f32b;
     ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16));
+//    ui->lineEdit_FLOAT->setText(QString::number(num_data_32b.num_u32b,'f',16));
+
 }
 
 

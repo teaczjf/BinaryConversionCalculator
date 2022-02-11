@@ -29,12 +29,15 @@ signals:
     void sig_Convert_INT_HEX4(int64_t num);//HEX4 有符号
     void sig_Convert_UINT_HEX4(uint64_t num);//HEX4 无符号
 
+    void sig_Convert_float(float num);//HEX4 float 浮点数
+
 public slots:
     void slot_Convert_INT_DEC(int64_t num);//DEC 有符号
     void slot_Convert_UINT_DEC(uint64_t num);//DEC 无符号
 
     void slot_Convert_INT_HEX4(int64_t num);//HEX4 有符号
     void slot_Convert_UINT_HEX4(uint64_t num);//HEX4 无符号
+    void slot_Convert_float(float num);//HEX4 float 浮点数
 
 //    void slot_Convert_INT_HEX8(int64_t num);//HEX8 有符号
 //    void slot_Convert_UINT_HEX8(uint64_t num);//HEX8 无符号
