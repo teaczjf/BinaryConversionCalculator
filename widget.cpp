@@ -52,10 +52,11 @@ Widget::Widget(QWidget *parent) :
     connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
     connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
     connect(this,&Widget::sig_Convert_float,this,&Widget::slot_Convert_float);//浮点数处理信号绑定
+    connect(this,&Widget::sig_Convert_double,this,&Widget::slot_Convert_double);//浮点数处理信号绑定
 
 
     //    connect(this,&Widget::sig_Convert_INT_HEX4,this,&Widget::slot_Convert_INT_HEX4);//有符号整数处理信号绑定
-//    connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
+    //    connect(this,&Widget::sig_Convert_UINT_HEX4,this,&Widget::slot_Convert_UINT_HEX4);//无符号整数处理信号绑定
     ui->radbtn_int->setChecked(true);
     flag=0;
     //两个radiobtn的配置
@@ -176,7 +177,7 @@ Widget::Widget(QWidget *parent) :
         if(flag == 0)//有符号
         {
             num_data_64b.num_u64b=str1.toULongLong(0,16);
- //            num_int64=str1.toInt(0,16);
+            //            num_int64=str1.toInt(0,16);
             emit this->sig_Convert_INT_HEX4(num_data_64b.num_i64b);
         }
         else
@@ -192,17 +193,21 @@ Widget::Widget(QWidget *parent) :
     ui->lineEdit_FLOAT->setValidator(validator6);
     connect(ui->pushButton_FLOAT,&QPushButton::clicked,[=](){
         QString str1 = ui->lineEdit_FLOAT->text();
-//        if(flag == 0)//有符号
-//        {
-            num_data_32b.num_f32b=str1.toFloat();
-            emit this->slot_Convert_float(num_data_32b.num_f32b);
-//        }
-//        else
-//        {
-//            num_uint64=str1.toULongLong(0,16);
-//            emit this->sig_Convert_UINT_HEX4(num_uint64);
-//        }
+        num_data_32b.num_f32b=str1.toFloat();
+        emit this->slot_Convert_float(num_data_32b.num_f32b);
     });
+
+
+    //double
+    QRegExp regx7("^(-?\\d+)(\\.\\d+)?$");//    双精度浮点数
+    QValidator *validator7 = new QRegExpValidator(regx7, ui->lineEdit_DOUBLE );
+    ui->lineEdit_DOUBLE->setValidator(validator7);
+    connect(ui->pushButton_DOUBLE,&QPushButton::clicked,[=](){
+        QString str1 = ui->lineEdit_DOUBLE->text();
+        num_data_64b.num_d64b=str1.toDouble();
+        emit this->sig_Convert_double(num_data_64b.num_d64b);
+    });
+
 
 }
 
@@ -378,7 +383,34 @@ void Widget::slot_Convert_float(float num)
 
     num_double =num_data_32b.num_f32b;
     ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16));
-//    ui->lineEdit_FLOAT->setText(QString::number(num_data_32b.num_u32b,'f',16));
+    //    ui->lineEdit_FLOAT->setText(QString::number(num_data_32b.num_u32b,'f',16));
+
+}
+
+
+/**
+ * @brief Widget::slot_Convert_double
+ * 处理双精度浮点数的转换
+ * @param num
+ */
+void Widget::slot_Convert_double(double num)
+{
+    num_data_64b.num_d64b=num;
+    int k1=num_data_64b.num_d64b;
+    QString str1=(QString("%1").arg(num_data_64b.num_u64b,16,16,QLatin1Char('0')));
+    ui->lineEdit_DEC->setText(QString::number(k1,10));
+    ui->lineEdit_HEX64->setText(str1);
+    ui->lineEdit_HEX32->setText(str1.mid(8,8));
+    ui->lineEdit_HEX16->setText(str1.mid(12,4));
+    ui->lineEdit_HEX8->setText(str1.mid(14,2));
+    ui->lineEdit_HEX4->setText(str1.mid(15,1));
+    ui->lineEdit_BIN->setText(QString::number(num_data_64b.num_u64b,2));
+    double f1= num_data_64b.num_d64b;
+    ui->lineEdit_FLOAT->setText(QString("%1").arg(f1));
+
+    num_double =num_data_64b.num_d64b;
+    ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16));
+    //    ui->lineEdit_FLOAT->setText(QString::number(num_data_32b.num_u32b,'f',16));
 
 }
 
