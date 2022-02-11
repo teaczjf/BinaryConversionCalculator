@@ -429,7 +429,7 @@ void Widget::slot_Convert_double(double num)
     ui->lineEdit_FLOAT->setText(QString("%1").arg(f1));
 
     num_double =num_data_64b.num_d64b;
-    ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16));
+    ui->lineEdit_DOUBLE->setText(QString::number(num_double,'f',16)); 
 //    ui->lineEdit_DOUBLE->setText(QString("%1").arg(num_double));
 
     //    ui->lineEdit_FLOAT->setText(QString::number(num_data_32b.num_u32b,'f',16));

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>825</width>
-    <height>418</height>
+    <height>321</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,16 +20,6 @@
    <string>Widget</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEdit_DEC"/>
-   </item>
-   <item row="5" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_HEX16">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label_11">
      <property name="text">
@@ -37,124 +27,20 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_16">
-     <property name="text">
-      <string>HEX(16b):</string>
-     </property>
-    </widget>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEdit_DEC"/>
    </item>
-   <item row="5" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX16">
-     <property name="maxLength">
-      <number>4</number>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX64">
-     <property name="maxLength">
-      <number>16</number>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="0">
-    <widget class="QLabel" name="label_15">
-     <property name="text">
-      <string>BIN:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QRadioButton" name="radbtn_int">
-     <property name="text">
-      <string>有符号</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_13">
-     <property name="text">
-      <string>FLOAT:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="1">
-    <widget class="QLineEdit" name="lineEdit_DOUBLE"/>
-   </item>
-   <item row="7" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_HEX64">
+   <item row="0" column="2">
+    <widget class="QPushButton" name="pushButton_DEC">
      <property name="text">
       <string>计算</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="1">
-    <widget class="QRadioButton" name="radbtn_uint">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_19">
      <property name="text">
-      <string>无符号</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QLineEdit" name="lineEdit_HEX32">
-     <property name="maxLength">
-      <number>8</number>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_HEX32">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_FLOAT">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="1">
-    <widget class="QLineEdit" name="lineEdit_BIN"/>
-   </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_17">
-     <property name="text">
-      <string>HEX(32b):</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
-    <widget class="QLabel" name="label_14">
-     <property name="text">
-      <string>DOUBLE:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QLineEdit" name="lineEdit_FLOAT"/>
-   </item>
-   <item row="10" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_BIN">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_DOUBLE">
-     <property name="text">
-      <string>计算</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QLabel" name="label_12">
-     <property name="text">
-      <string>HEX(64b):</string>
+      <string>HEX(4b):</string>
      </property>
     </widget>
    </item>
@@ -165,10 +51,10 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_19">
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButton_HEX4">
      <property name="text">
-      <string>HEX(4b):</string>
+      <string>计算</string>
      </property>
     </widget>
    </item>
@@ -186,24 +72,149 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="2" colspan="2">
+   <item row="2" column="2">
     <widget class="QPushButton" name="pushButton_HEX8">
      <property name="text">
       <string>计算</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_HEX4">
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_16">
+     <property name="text">
+      <string>HEX(16b):</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="lineEdit_HEX16">
+     <property name="maxLength">
+      <number>4</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButton_HEX16">
      <property name="text">
       <string>计算</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="2" colspan="2">
-    <widget class="QPushButton" name="pushButton_DEC">
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_17">
+     <property name="text">
+      <string>HEX(32b):</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="lineEdit_HEX32">
+     <property name="maxLength">
+      <number>8</number>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="pushButton_HEX32">
      <property name="text">
       <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_12">
+     <property name="text">
+      <string>HEX(64b):</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLineEdit" name="lineEdit_HEX64">
+     <property name="maxLength">
+      <number>16</number>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QPushButton" name="pushButton_HEX64">
+     <property name="text">
+      <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_13">
+     <property name="text">
+      <string>FLOAT:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="lineEdit_FLOAT"/>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="pushButton_FLOAT">
+     <property name="text">
+      <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_14">
+     <property name="text">
+      <string>DOUBLE:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLineEdit" name="lineEdit_DOUBLE"/>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="pushButton_DOUBLE">
+     <property name="text">
+      <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="label_15">
+     <property name="text">
+      <string>BIN:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLineEdit" name="lineEdit_BIN">
+     <property name="maxLength">
+      <number>64</number>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QPushButton" name="pushButton_BIN">
+     <property name="text">
+      <string>计算</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QRadioButton" name="radbtn_int">
+     <property name="text">
+      <string>有符号</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QRadioButton" name="radbtn_uint">
+     <property name="text">
+      <string>无符号</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>FLOAT DOUBLE 只有有符号处理  BIN只当无符号处理</string>
      </property>
     </widget>
    </item>
